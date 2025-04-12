@@ -6,7 +6,7 @@ namespace AE
     public class Interactor : MonoBehaviour
     {
         [SerializeField]
-        private LayerMask interactiveLayers;
+        private LayerMask detectedLayers;
         [SerializeField]
         private float interactionRange = 2f;
         [SerializeField]
@@ -35,14 +35,13 @@ namespace AE
         private void Update()
         {
             currentInteractiveObject = null;
-            if (Physics.Raycast(transform.position, transform.forward, out var hitInfo, interactionRange, interactiveLayers))
+            if (Physics.Raycast(transform.position, transform.forward, out var hitInfo, interactionRange, detectedLayers))
             {
                 var interactiveObject = hitInfo.collider.GetComponentInParent<InteractiveObject>();
                 if (interactiveObject && interactiveObject.isActiveAndEnabled)
                 {
                     currentInteractiveObject = interactiveObject;
                 }
-
             }
         }
 

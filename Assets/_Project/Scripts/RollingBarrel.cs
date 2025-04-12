@@ -37,7 +37,5 @@ namespace AE
             splineMovement.enabled = true;
             rotator.enabled = true;
         }
-
-
     }
 }
