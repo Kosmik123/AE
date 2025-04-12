@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 2546510499963962265}
   m_Layer: 0
   m_Name: Candle Item
-  m_TagString: Untagged
+  m_TagString: Items/Candle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -270,13 +270,42 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 142874, guid: 1ef4dd93dab6e69498d268d17fcdc66b, type: 3}
+      insertIndex: 3
+      addedObject: {fileID: 5718528099637435990}
   m_SourcePrefab: {fileID: 100100000, guid: 1ef4dd93dab6e69498d268d17fcdc66b, type: 3}
 --- !u!4 &4233036246717855162 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 413552, guid: 1ef4dd93dab6e69498d268d17fcdc66b, type: 3}
   m_PrefabInstance: {fileID: 4233036246718233290}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &4233036246718092496 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 142874, guid: 1ef4dd93dab6e69498d268d17fcdc66b, type: 3}
+  m_PrefabInstance: {fileID: 4233036246718233290}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &5718528099637435990
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4233036246718092496}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.18926813, y: 0.6562779, z: 0.18926919}
+  m_Center: {x: 0.0000009594029, y: 0.32813895, z: -0.000000059604627}
 --- !u!1001 &4370621372022915054
 PrefabInstance:
   m_ObjectHideFlags: 0

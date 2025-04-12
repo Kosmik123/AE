@@ -5,6 +5,12 @@ namespace AE
 {
     public class Interactor : MonoBehaviour
     {
+        public delegate void InteractiveObjectChangeEventHandler(Interactor interactor, InteractiveObject from, InteractiveObject to);
+
+        public event InteractiveObjectChangeEventHandler OnInteractiveObjectChanged;
+
+        [SerializeField]
+        private Transform rayOrigin;
         [SerializeField]
         private LayerMask detectedLayers;
         [SerializeField]
@@ -34,8 +40,9 @@ namespace AE
 
         private void Update()
         {
+            var previousInteractiveObject = currentInteractiveObject;
             currentInteractiveObject = null;
-            if (Physics.Raycast(transform.position, transform.forward, out var hitInfo, interactionRange, detectedLayers))
+            if (Physics.Raycast(rayOrigin.position, rayOrigin.forward, out var hitInfo, interactionRange, detectedLayers))
             {
                 var interactiveObject = hitInfo.collider.GetComponentInParent<InteractiveObject>();
                 if (interactiveObject && interactiveObject.isActiveAndEnabled)
@@ -43,7 +50,12 @@ namespace AE
                     currentInteractiveObject = interactiveObject;
                 }
             }
+
+            if (previousInteractiveObject != currentInteractiveObject)
+                OnInteractiveObjectChanged?.Invoke(this, previousInteractiveObject, currentInteractiveObject);
         }
+
+
 
         private void OnDisable()
         {
@@ -51,6 +63,15 @@ namespace AE
             interactAction.Disable();
             interactAction.Dispose();
             interactAction = null;
+        }
+
+        private void OnDrawGizmosSelected()
+        {
+            if (rayOrigin)
+            {
+                Gizmos.color = Color.yellow;
+                Gizmos.DrawRay(rayOrigin.position, rayOrigin.forward * interactionRange);
+            }
         }
     }
 }

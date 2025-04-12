@@ -7,6 +7,8 @@ namespace AE
         [SerializeField]
         private Interaction interaction;
 
-        public bool TryInteract(Interactor interactor) => interaction.TryInteract(interactor);
+        public bool TryInteract(Interactor interactor) => interaction 
+            && interaction.isActiveAndEnabled 
+            && interaction.TryInteract(interactor);
     }
 }

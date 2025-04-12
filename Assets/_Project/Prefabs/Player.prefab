@@ -239,6 +239,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a200eb555008e3443b6cd0363cc75dbd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rayOrigin: {fileID: 8429667932012058869}
   detectedLayers:
     serializedVersion: 2
     m_Bits: 1281
@@ -259,6 +260,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   leftHandObjectHolder: {fileID: 3874618489701600275}
   rightHandObjectHolder: {fileID: 7018732184765018386}
+  lightSourceTag: Items/Candle
+  hasLightSource: 0
   leftHandObject: {fileID: 0}
   rightHandObject: {fileID: 0}
 --- !u!1 &2179588913920522169

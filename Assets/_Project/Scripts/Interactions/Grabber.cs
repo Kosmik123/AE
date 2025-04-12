@@ -2,12 +2,21 @@
 
 namespace AE
 {
+    public class LightSource : MonoBehaviour
+    {
+    }
+
+    [RequireComponent(typeof(Interactor))]
     public class Grabber : MonoBehaviour
     {
         [SerializeField]
         private Transform leftHandObjectHolder;
         [SerializeField]
         private Transform rightHandObjectHolder;
+
+        [Header("Candle")]
+        [SerializeField]
+        private string lightSourceTag;
 
         [Header("States")]
         [SerializeField]
@@ -27,6 +36,9 @@ namespace AE
             grabbedObject.isKinematic = true;
             grabbedObject.transform.SetParent(holder, false);
             grabbedObject.transform.SetLocalPositionAndRotation(Vector3.zero, Quaternion.identity);
+
+            if (grabbedObject.CompareTag(lightSourceTag) && TryGetComponent<LightSource>(out _) == false)
+                gameObject.AddComponent<LightSource>();
         }
 
         public bool TryGetGrabbedObject(GrabHand hand, out Rigidbody grabbedObject)

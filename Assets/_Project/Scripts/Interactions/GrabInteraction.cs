@@ -23,6 +23,7 @@ namespace AE
                 return false;
 
             grabber.GrabObject(grabbedObject, targetHand);
+            enabled = false;
             return true;
         }
     }
