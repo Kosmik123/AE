@@ -2,13 +2,19 @@
 
 namespace AE
 {
-    public class InteractiveObject : MonoBehaviour
+    public interface IInteractiveObject
+    {
+        bool CanInteract(Interactor interactor);
+        bool TryInteract(Interactor interactor);
+    }
+
+    public sealed class InteractiveObject : MonoBehaviour, IInteractiveObject
     {
         [SerializeField]
         private Interaction interaction;
 
-        public bool TryInteract(Interactor interactor) => interaction 
-            && interaction.isActiveAndEnabled 
-            && interaction.TryInteract(interactor);
+        public bool CanInteract(Interactor interactor) => interaction && interaction.CanInteract(interactor);
+
+        public bool TryInteract(Interactor interactor) => interaction && interaction.TryInteract(interactor);
     }
 }

@@ -7,7 +7,7 @@ namespace AE
     {
         public override bool TryInteract(Interactor interactor)
         {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
         }
     }
 }

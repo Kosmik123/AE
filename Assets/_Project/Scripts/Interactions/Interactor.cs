@@ -44,18 +44,16 @@ namespace AE
             currentInteractiveObject = null;
             if (Physics.Raycast(rayOrigin.position, rayOrigin.forward, out var hitInfo, interactionRange, detectedLayers))
             {
-                var interactiveObject = hitInfo.collider.GetComponentInParent<InteractiveObject>();
-                if (interactiveObject && interactiveObject.isActiveAndEnabled)
+                var interactiveObject = hitInfo.collider.GetComponentInParent<IInteractiveObject>();
+                if (interactiveObject != null && interactiveObject.CanInteract(this))
                 {
-                    currentInteractiveObject = interactiveObject;
+                    currentInteractiveObject = interactiveObject as InteractiveObject;
                 }
             }
 
             if (previousInteractiveObject != currentInteractiveObject)
                 OnInteractiveObjectChanged?.Invoke(this, previousInteractiveObject, currentInteractiveObject);
         }
-
-
 
         private void OnDisable()
         {

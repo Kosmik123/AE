@@ -14,6 +14,10 @@ namespace AE
             Debug.Log(grabbedObject);
         }
 
+        public override bool CanInteract(Interactor interactor) => base.CanInteract(interactor) 
+            && interactor.TryGetComponent<Grabber>(out var grabber);
+
+
         public override bool TryInteract(Interactor interactor)
         {
             if (interactor.TryGetComponent<Grabber>(out var grabber) == false)

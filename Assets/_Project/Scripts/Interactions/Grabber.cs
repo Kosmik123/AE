@@ -2,10 +2,6 @@
 
 namespace AE
 {
-    public class LightSource : MonoBehaviour
-    {
-    }
-
     [RequireComponent(typeof(Interactor))]
     public class Grabber : MonoBehaviour
     {
