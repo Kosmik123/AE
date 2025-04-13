@@ -2,6 +2,8 @@
 
 namespace AE
 {
+    public delegate void InteractionEventHandler(InteractiveObject interactiveObject, Interactor interactor, Interaction interaction);
+
     public interface IInteractiveObject
     {
         bool CanInteract(Interactor interactor);
@@ -9,7 +11,9 @@ namespace AE
     }
 
     public sealed class InteractiveObject : MonoBehaviour, IInteractiveObject
-    {  
+    {
+        public event InteractionEventHandler OnInteracted;
+
         [SerializeField]
         private Interaction interaction;
         public Interaction Interaction
@@ -20,6 +24,12 @@ namespace AE
 
         public bool CanInteract(Interactor interactor) => isActiveAndEnabled && interaction && interaction.CanInteract(interactor);
 
-        public bool TryInteract(Interactor interactor) => interaction && interaction.TryInteract(interactor);
-    }
+		public bool TryInteract(Interactor interactor)
+		{
+			bool success = interaction && interaction.TryInteract(interactor);
+            if (success)
+                OnInteracted?.Invoke(this, interactor, interaction);
+            return success;
+        }
+	}
 }

@@ -83,7 +83,7 @@ namespace AE
 			}
 		}
 
-		public bool TryGetInteractionHandler<T>(out T handler) 
+		public bool TryGetInteractionHandler<T>(out T handler)
 			where T : InteractorInteractionHandler
 		{
 			handler = null;
