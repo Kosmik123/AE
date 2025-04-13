@@ -6421,7 +6421,7 @@ AudioListener:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 641267702}
-  m_Enabled: 0
+  m_Enabled: 1
 --- !u!20 &641267706
 Camera:
   m_ObjectHideFlags: 0
@@ -13121,7 +13121,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1282981268}
   m_Layer: 0
-  m_Name: Game Controller
+  m_Name: Game Director
   m_TagString: GameController
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
