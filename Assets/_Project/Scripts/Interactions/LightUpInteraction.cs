@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace AE
 {
-    public class LightUpInteraction : Interaction
+	public class LightUpInteraction : Interaction
     {
         [SerializeField]
         private Torch torch;

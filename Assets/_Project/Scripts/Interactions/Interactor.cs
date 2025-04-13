@@ -23,14 +23,17 @@ namespace AE
 		private InputActionReference interactInput;
 		[SerializeField]
 		private List<InteractorInteractionHandler> interactionHandlers;
+		[SerializeField]
+		private Transform mainBody;
 
-		[Header("Other")]
 		[SerializeField]
 		private Behaviour[] movementComponents;
 
 		[Header("States")]
 		[SerializeField]
 		private InteractiveObject currentInteractiveObject;
+
+		public Transform MainBody => mainBody;
 
 		private void OnEnable()
 		{
