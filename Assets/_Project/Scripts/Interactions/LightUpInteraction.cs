@@ -13,7 +13,7 @@ namespace AE
         [SerializeField]
         private float moveToTorchDuration = 1;
         [SerializeField]
-        private float middleWaitingDuration = 0.5f;
+        private float middleWaitingDuration = 0.2f;
         [SerializeField]
         private float moveBackDuration = 1;
 
@@ -22,19 +22,18 @@ namespace AE
             if (base.CanInteract(interactor) == false)
                 return false;
 
-            if (interactor.TryGetComponent<LightSource>(out var lightSource) == false)
+            if (interactor.TryGetInteractionHandler<LightSource>(out var lightSource) == false)
                 return false;
 
-            return lightSource.IsLighted != torch.enabled;
+            return lightSource.HasCandle && lightSource.IsLighted != torch.enabled;
         }
 
         public override bool TryInteract(Interactor interactor)
         {
-            if (interactor.TryGetComponent<LightSource>(out var lightSource) == false)
+            if (interactor.TryGetInteractionHandler<LightSource>(out var lightSource) == false)
                 return false;
 
-            var playerMovement = interactor.GetComponentInParent<SimplePlayerMovement>();
-            if (playerMovement == null)
+            if (lightSource.HasCandle == false)
                 return false;
 
             interactor.enabled = false;
@@ -48,6 +47,7 @@ namespace AE
                     .Join(candle.DORotateQuaternion(candleLightingPoint.rotation, moveToTorchDuration))
                 .AppendInterval(middleWaitingDuration)
                 .AppendCallback(lightingAction)
+                .AppendInterval(middleWaitingDuration)
                 .Append(candle.DOLocalMove(Vector3.zero, moveBackDuration))
                     .Join(candle.DOLocalRotateQuaternion(Quaternion.identity, moveBackDuration))
                 .AppendCallback(EnableInteractor)
