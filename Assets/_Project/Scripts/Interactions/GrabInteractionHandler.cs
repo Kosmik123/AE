@@ -7,36 +7,43 @@ namespace AE
     {
         [SerializeField]
         private Transform objectHolder;
-
-        [Header("Candle")]
         [SerializeField]
-        private string lightSourceTag;
+        private Interactor interactor;
 
         [Header("States")]
         [SerializeField]
         private Rigidbody grabbedObject;
 
-        public void GrabObject(Rigidbody newGrabbedObject)
+		public bool TryGetGrabbedObject(out Rigidbody newGrabbedObject)
+		{
+			newGrabbedObject = grabbedObject;
+			return grabbedObject != null;
+		}
+
+		public void GrabObject(Rigidbody newGrabbedObject)
         {
             grabbedObject = newGrabbedObject;
-
             grabbedObject.isKinematic = true;
 
 			var grabbedObjectTransform = grabbedObject.transform;
 			grabbedObjectTransform.SetParent(objectHolder, false);
 			grabbedObjectTransform.SetLocalPositionAndRotation(Vector3.zero, Quaternion.identity);
+            interactor.enabled = false;
+            interactor.InteractInput.action.Enable();
+			interactor.InteractInput.action.performed += Action_performed;
         }
 
-        public bool TryGetGrabbedObject(out Rigidbody newGrabbedObject)
-        {
-			newGrabbedObject = grabbedObject;
-            return grabbedObject != null;
-        }
+		private void Action_performed(UnityEngine.InputSystem.InputAction.CallbackContext obj) => DropObject();
 
-        public void DropObject()
+        private void DropObject()
         {
+            interactor.InteractInput.action.Disable();
+			interactor.InteractInput.action.performed -= Action_performed;
+            
+            interactor.enabled = true;
             grabbedObject.transform.parent = null;
             grabbedObject.isKinematic = false;
+            grabbedObject = null;
         }
     }
 }

@@ -7,11 +7,6 @@ namespace AE
         [SerializeField]
         private Rigidbody grabbedObject;
 
-        private void Start()
-        {
-            Debug.Log(grabbedObject);
-        }
-
         public override bool CanInteract(Interactor interactor) => base.CanInteract(interactor) 
             && interactor.TryGetInteractionHandler<GrabInteractionHandler>(out _);
 
@@ -24,7 +19,6 @@ namespace AE
                 return false;
 
             grabber.GrabObject(grabbedObject);
-            enabled = false;
             return true;
         }
     }

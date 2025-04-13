@@ -282,8 +282,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fbd6551df7d24134aa7d6ea99312d812, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  objectHolder: {fileID: 0}
-  lightSourceTag: Items/Candle
+  objectHolder: {fileID: 7018732184765018386}
+  interactor: {fileID: 1597742927588085252}
   grabbedObject: {fileID: 0}
 --- !u!1 &2179588913920522169
 GameObject:

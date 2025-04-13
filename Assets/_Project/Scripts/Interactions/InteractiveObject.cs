@@ -9,7 +9,7 @@ namespace AE
     }
 
     public sealed class InteractiveObject : MonoBehaviour, IInteractiveObject
-    {
+    {  
         [SerializeField]
         private Interaction interaction;
         public Interaction Interaction

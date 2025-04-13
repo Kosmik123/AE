@@ -21,6 +21,7 @@ namespace AE
 		private float interactionRange = 2f;
 		[SerializeField]
 		private InputActionReference interactInput;
+		public InputActionReference InteractInput => interactInput;
 		[SerializeField]
 		private List<InteractorInteractionHandler> interactionHandlers;
 		[SerializeField]
