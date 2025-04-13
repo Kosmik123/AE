@@ -46,7 +46,7 @@ namespace AE
                 .Append(candle.DOMove(candleLightingPoint.position, moveToTorchDuration))
                     .Join(candle.DORotateQuaternion(candleLightingPoint.rotation, moveToTorchDuration))
                 .AppendInterval(middleWaitingDuration)
-                .AppendCallback(lightingAction)
+                .AppendCallback(lightingAction) 
                 .AppendInterval(middleWaitingDuration)
                 .Append(candle.DOLocalMove(Vector3.zero, moveBackDuration))
                     .Join(candle.DOLocalRotateQuaternion(Quaternion.identity, moveBackDuration))
