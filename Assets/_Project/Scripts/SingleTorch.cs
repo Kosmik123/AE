@@ -17,6 +17,8 @@ namespace AE
         private int[] glowMaterialsIndices = new[] { 1 }; 
         [SerializeField]
         private Light[] lights;
+        [SerializeField]
+        private bool shouldToggleMeshVisibility;
 
         private void Reset()
         {
@@ -38,6 +40,9 @@ namespace AE
         {
             foreach (var light in lights)
                 light.enabled = enable;
+
+            if (shouldToggleMeshVisibility)
+                meshRenderer.enabled = enable;
 
             if (Application.isPlaying)
             {

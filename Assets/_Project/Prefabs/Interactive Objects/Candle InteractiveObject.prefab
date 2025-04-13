@@ -10,7 +10,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4017313296344478562, guid: 1e80be820fa00ac4da7f711099cb29a9, type: 3}
       propertyPath: m_Name
-      value: Candle Interactive Object
+      value: Candle InteractiveObject
       objectReference: {fileID: 0}
     - target: {fileID: 4781126988133541369, guid: 1e80be820fa00ac4da7f711099cb29a9, type: 3}
       propertyPath: m_LocalPosition.x
@@ -51,6 +51,14 @@ PrefabInstance:
     - target: {fileID: 4781126988133541369, guid: 1e80be820fa00ac4da7f711099cb29a9, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 5718528099637435990, guid: 1e80be820fa00ac4da7f711099cb29a9, type: 3}
+      propertyPath: m_Size.x
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5718528099637435990, guid: 1e80be820fa00ac4da7f711099cb29a9, type: 3}
+      propertyPath: m_Size.y
+      value: 0.66
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 4204194760553771232, guid: 1e80be820fa00ac4da7f711099cb29a9, type: 3}

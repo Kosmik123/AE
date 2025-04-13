@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Linq;
+using UnityEngine;
 
 namespace AE
 {
@@ -6,6 +7,13 @@ namespace AE
     {
         [SerializeField]
         private Torch[] subtorches;
+
+		private void Reset()
+		{
+			subtorches = GetComponentsInChildren<Torch>(true)
+				.Where(t => t != this)
+				.ToArray();
+		}
 
 		private void OnEnable()
 		{

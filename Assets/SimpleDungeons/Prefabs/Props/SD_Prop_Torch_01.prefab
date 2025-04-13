@@ -68,7 +68,7 @@ MeshRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: 82e4de2985db4c8448893385cc8d2108, type: 2}
-  - {fileID: 2100000, guid: 82e4de2985db4c8448893385cc8d2108, type: 2}
+  - {fileID: 2100000, guid: 9202bdb4570ff3349b62e61a906398a7, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -128,6 +128,7 @@ MonoBehaviour:
   glowMaterialsIndices: 01000000
   lights:
   - {fileID: 8975892461772237483}
+  shouldToggleMeshVisibility: 0
 --- !u!1 &306411447196808161
 GameObject:
   m_ObjectHideFlags: 0
