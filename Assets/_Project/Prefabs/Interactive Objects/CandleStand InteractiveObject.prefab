@@ -126,7 +126,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2265280120777699225}
   - component: {fileID: 2872741923038844298}
-  - component: {fileID: 3490278982850686120}
   m_Layer: 0
   m_Name: CandleStand InteractiveObject
   m_TagString: Untagged
@@ -149,6 +148,7 @@ Transform:
   m_Children:
   - {fileID: 6172323100112327150}
   - {fileID: 2437577921694327314}
+  - {fileID: 8357108625743126230}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2872741923038844298
@@ -173,20 +173,52 @@ MonoBehaviour:
         m_MethodName: set_Interaction
         m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 3490278982850686120}
+          m_ObjectArgument: {fileID: 5773312897788790271}
           m_ObjectArgumentAssemblyTypeName: AE.Interaction, AE
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &3490278982850686120
+--- !u!1 &7915893759627164686
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8357108625743126230}
+  - component: {fileID: 5773312897788790271}
+  m_Layer: 0
+  m_Name: Light Up Interaction
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8357108625743126230
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7915893759627164686}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2265280120777699225}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5773312897788790271
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6886893465465519223}
+  m_GameObject: {fileID: 7915893759627164686}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6d4fcf29e94583546b7b60e6377a5691, type: 3}

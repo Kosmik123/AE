@@ -17,6 +17,8 @@ namespace AE
 		private GameObject evilFloor;
 		[SerializeField]
 		private Interaction candleStandInteraction;
+		[SerializeField]
+		private GameObject[] stairsBlocks;
 
 		[Header("Main game")]
 		[SerializeField]
@@ -28,6 +30,8 @@ namespace AE
 
 		private void Start()
 		{
+			foreach (var block in stairsBlocks)
+				block.SetActive(true);
 			evilFloor.SetActive(false);
 			initialFloor.SetActive(true);
 			candleStandInteraction.enabled = false;
@@ -45,6 +49,8 @@ namespace AE
 			evilFloor.SetActive(true);
 			initialFloor.SetActive(false);
 			candleStandInteraction.enabled = true;
+			foreach (var block in stairsBlocks)
+				block.SetActive(false);
 		}
 
 		private void OnDestroy()
