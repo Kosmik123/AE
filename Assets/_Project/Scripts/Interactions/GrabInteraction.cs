@@ -5,8 +5,6 @@ namespace AE
 	public class GrabInteraction : Interaction
     {
         [SerializeField]
-        private GrabHand targetHand;
-        [SerializeField]
         private Rigidbody grabbedObject;
 
         private void Start()
@@ -22,18 +20,12 @@ namespace AE
             if (interactor.TryGetInteractionHandler<GrabInteractionHandler>(out var grabber) == false)
                 return false;
 
-            if (grabber.TryGetGrabbedObject(targetHand, out _))
+            if (grabber.TryGetGrabbedObject(out _))
                 return false;
 
-            grabber.GrabObject(grabbedObject, targetHand);
+            grabber.GrabObject(grabbedObject);
             enabled = false;
             return true;
         }
-    }
-    
-    public enum GrabHand
-    {
-        Right,
-        Left,
     }
 }

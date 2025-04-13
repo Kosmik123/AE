@@ -6,9 +6,7 @@ namespace AE
     public class GrabInteractionHandler : InteractorInteractionHandler
     {
         [SerializeField]
-        private Transform leftHandObjectHolder;
-        [SerializeField]
-        private Transform rightHandObjectHolder;
+        private Transform objectHolder;
 
         [Header("Candle")]
         [SerializeField]
@@ -16,46 +14,29 @@ namespace AE
 
         [Header("States")]
         [SerializeField]
-        private Rigidbody leftHandObject;
-        [SerializeField]
-        private Rigidbody rightHandObject;
+        private Rigidbody grabbedObject;
 
-        public void GrabObject(Rigidbody grabbedObject, GrabHand targetHand)
+        public void GrabObject(Rigidbody newGrabbedObject)
         {
-            bool isLeftHand = targetHand == GrabHand.Left;
-            if (isLeftHand)
-                leftHandObject = grabbedObject;
-            else
-                rightHandObject = grabbedObject;
+            grabbedObject = newGrabbedObject;
 
-            var holder = isLeftHand ? leftHandObjectHolder : rightHandObjectHolder;
             grabbedObject.isKinematic = true;
-            grabbedObject.transform.SetParent(holder, false);
-            grabbedObject.transform.SetLocalPositionAndRotation(Vector3.zero, Quaternion.identity);
 
-            if (grabbedObject.CompareTag(lightSourceTag) && TryGetComponent<LightSource>(out _) == false)
-            {
-                gameObject.AddComponent<LightSource>().Candle = grabbedObject.transform;
-            }
+			var grabbedObjectTransform = grabbedObject.transform;
+			grabbedObjectTransform.SetParent(objectHolder, false);
+			grabbedObjectTransform.SetLocalPositionAndRotation(Vector3.zero, Quaternion.identity);
         }
 
-        public bool TryGetGrabbedObject(GrabHand hand, out Rigidbody grabbedObject)
+        public bool TryGetGrabbedObject(out Rigidbody newGrabbedObject)
         {
-            grabbedObject = hand == GrabHand.Left ? leftHandObject : rightHandObject;
+			newGrabbedObject = grabbedObject;
             return grabbedObject != null;
         }
 
-        public void DropObject(GrabHand hand)
+        public void DropObject()
         {
-            bool isLeftHand = hand == GrabHand.Left;
-            var grabbedObject = isLeftHand ? leftHandObject : rightHandObject;
             grabbedObject.transform.parent = null;
             grabbedObject.isKinematic = false;
-
-            if (isLeftHand)
-                leftHandObject = null;
-            else
-                rightHandObject = null;
         }
     }
 }
