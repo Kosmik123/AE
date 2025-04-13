@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2437577921694327314}
   m_Layer: 0
-  m_Name: Target Point
+  m_Name: 'StandUp Point '
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -41,6 +41,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2265280120777699225}
   - component: {fileID: 2872741923038844298}
+  - component: {fileID: 2890609797772364326}
   m_Layer: 0
   m_Name: CandleStand InteractiveObject
   m_TagString: Untagged
@@ -79,6 +80,38 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   targetLocation: {fileID: 2437577921694327314}
   transitionDuration: 1
+  onStandUp:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 6019918757045575013}
+        m_TargetAssemblyTypeName: AE.InteractiveObject, AE
+        m_MethodName: set_Interaction
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 2890609797772364326}
+          m_ObjectArgumentAssemblyTypeName: AE.Interaction, AE
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &2890609797772364326
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6886893465465519223}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d4fcf29e94583546b7b60e6377a5691, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  torch: {fileID: 0}
+  candleLightingPoint: {fileID: 0}
+  moveToTorchDuration: 1
+  middleWaitingDuration: 0.2
+  moveBackDuration: 1
 --- !u!1001 &6172323100112508334
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -138,7 +171,15 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 198924, guid: 905f5d361cad193469ae394765266d9a, type: 3}
       insertIndex: -1
       addedObject: {fileID: 6019918757045575013}
+    - targetCorrespondingSourceObject: {fileID: 198924, guid: 905f5d361cad193469ae394765266d9a, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6151230299145162531}
   m_SourcePrefab: {fileID: 100100000, guid: 905f5d361cad193469ae394765266d9a, type: 3}
+--- !u!23 &6172323100110577908 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 2340186, guid: 905f5d361cad193469ae394765266d9a, type: 3}
+  m_PrefabInstance: {fileID: 6172323100112508334}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &6172323100112327150 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 443456, guid: 905f5d361cad193469ae394765266d9a, type: 3}
@@ -162,3 +203,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   interaction: {fileID: 2872741923038844298}
+--- !u!114 &6151230299145162531
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6172323100112706722}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab7f172f927c32048baf97cfd5252c76, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  meshRenderer: {fileID: 6172323100110577908}
+  glowMaterialsIndices: 01000000
+  lights: []

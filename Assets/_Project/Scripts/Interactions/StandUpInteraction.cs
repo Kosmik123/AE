@@ -1,5 +1,6 @@
 ﻿using DG.Tweening;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace AE
 {
@@ -10,6 +11,9 @@ namespace AE
 
 		[SerializeField]
 		private float transitionDuration = 1f;
+
+		[Space, SerializeField]
+		private UnityEvent onStandUp;
 
 		public override bool TryInteract(Interactor interactor)
 		{
@@ -33,6 +37,7 @@ namespace AE
 				interactor.EnableMovement();
 				interactor.enabled = true;
 				enabled = false;
+				onStandUp?.Invoke();
 			}
 		}
 	}

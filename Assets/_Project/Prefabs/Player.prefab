@@ -265,7 +265,7 @@ MonoBehaviour:
   interactionHandlers:
   - {fileID: 7400123494011994568}
   - {fileID: 3988362873746539653}
-  mainBody: {fileID: 0}
+  mainBody: {fileID: 6873244619290580430}
   movementComponents:
   - {fileID: 4237495844582817526}
   - {fileID: 2202087164605513198}

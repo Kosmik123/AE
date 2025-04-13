@@ -12,6 +12,11 @@ namespace AE
     {
         [SerializeField]
         private Interaction interaction;
+        public Interaction Interaction
+        {
+            get => interaction;
+            set => interaction = value; 
+        }
 
         public bool CanInteract(Interactor interactor) => isActiveAndEnabled && interaction && interaction.CanInteract(interactor);
 

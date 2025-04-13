@@ -2,7 +2,12 @@ using UnityEngine;
 
 namespace AE
 {
-    public class Torch : MonoBehaviour
+	public class Torch : MonoBehaviour
+    {
+
+    }
+
+    public class SingleTorch : Torch
     {
         private const string EmissionKeyword = "_EMISSION";
 
