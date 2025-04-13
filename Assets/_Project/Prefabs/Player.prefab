@@ -244,6 +244,8 @@ MonoBehaviour:
     m_Bits: 1281
   interactionRange: 2
   interactInput: {fileID: 1120369429361536294, guid: bf5fbaa4bc5342c429fcfd3552b3a941, type: 3}
+  interactionHandlers:
+  - {fileID: 7400123494011994568}
   movementComponents:
   - {fileID: 4237495844582817526}
   - {fileID: 2202087164605513198}

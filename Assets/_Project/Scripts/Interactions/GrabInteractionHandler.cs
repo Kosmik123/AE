@@ -3,7 +3,7 @@
 namespace AE
 {
     [RequireComponent(typeof(Interactor))]
-    public class Grabber : MonoBehaviour
+    public class GrabInteractionHandler : InteractorInteractionHandler
     {
         [SerializeField]
         private Transform leftHandObjectHolder;

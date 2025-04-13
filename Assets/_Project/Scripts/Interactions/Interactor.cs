@@ -1,8 +1,12 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 namespace AE
 {
+	public abstract class InteractorInteractionHandler : MonoBehaviour
+	{ }
+
 	public class Interactor : MonoBehaviour
 	{
 		public delegate void InteractiveObjectChangeEventHandler(Interactor interactor, InteractiveObject from, InteractiveObject to);
@@ -17,6 +21,8 @@ namespace AE
 		private float interactionRange = 2f;
 		[SerializeField]
 		private InputActionReference interactInput;
+		[SerializeField]
+		private List<InteractorInteractionHandler> interactionHandlers;
 
 		[Header("Other")]
 		[SerializeField]
@@ -71,6 +77,21 @@ namespace AE
 			{
 				component.enabled = true;
 			}
+		}
+
+		public bool TryGetInteractionHandler<T>(out T handler) 
+			where T : InteractorInteractionHandler
+		{
+			handler = null;
+			for (int i = 0; i < interactionHandlers.Count; i++)
+			{
+				if (interactionHandlers[i] is T typedHandler)
+				{
+					handler = typedHandler;
+					return true;
+				}
+			}
+			return false;
 		}
 
 		private void OnDisable()

@@ -2,7 +2,7 @@
 
 namespace AE
 {
-    public class GrabInteraction : Interaction
+	public class GrabInteraction : Interaction
     {
         [SerializeField]
         private GrabHand targetHand;
@@ -15,12 +15,11 @@ namespace AE
         }
 
         public override bool CanInteract(Interactor interactor) => base.CanInteract(interactor) 
-            && interactor.TryGetComponent<Grabber>(out var grabber);
-
+            && interactor.TryGetInteractionHandler<GrabInteractionHandler>(out _);
 
         public override bool TryInteract(Interactor interactor)
         {
-            if (interactor.TryGetComponent<Grabber>(out var grabber) == false)
+            if (interactor.TryGetInteractionHandler<GrabInteractionHandler>(out var grabber) == false)
                 return false;
 
             if (grabber.TryGetGrabbedObject(targetHand, out _))
