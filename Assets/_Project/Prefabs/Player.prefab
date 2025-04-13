@@ -145,7 +145,7 @@ CharacterController:
   m_Height: 2
   m_Radius: 0.4
   m_SlopeLimit: 40
-  m_StepOffset: 0.2
+  m_StepOffset: 0.25
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 1, z: 0}
@@ -161,7 +161,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af5e4e687c45a8348ba028769421c25f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 4
+  moveSpeed: 5
   moveInputAction: {fileID: -1680190386980627800, guid: bf5fbaa4bc5342c429fcfd3552b3a941, type: 3}
 --- !u!114 &2333008609264106766
 MonoBehaviour:

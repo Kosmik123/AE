@@ -1,5 +1,7 @@
 using UnityEngine;
 using UnityEngine.Pool;
+using Unity.Cinemachine;
+using Cysharp.Threading.Tasks;
 
 namespace AE
 {
@@ -32,6 +34,14 @@ namespace AE
 		private string[] objectsTagsNeededInDropArea;
 		[SerializeField]
 		private Torch[] requiredTorches;
+
+		[Header("Winning Sequence")]
+		[SerializeField]
+		private CinemachineCamera playerCamera;
+		[SerializeField]
+		private CinemachineCamera winningViewCamera;
+		[SerializeField]
+		private ScreenFade screenFade;
 
 		private readonly Collider[] detectedCollidersInDropArea = new Collider[10];
 
@@ -103,9 +113,23 @@ namespace AE
 			grabInteractionHandler.OnObjectDropped -= CheckVictoryCondition;
 			Torch.OnTorchLighedUp -= CheckVictoryCondition;
 
-			// ZWYCIÊSTWO
-			Debug.Log("WYGRA£EŒ!");
+			PlayWinningSequence(); 
+		}
 
+		[ContextMenu("Play Winning Sequence")]
+		private async void PlayWinningSequence()
+		{
+			await UniTask.Delay(1000);
+
+			playerInteractor.enabled = false;
+			playerInteractor.DisableMovement();
+			playerCamera.enabled = false;
+			winningViewCamera.enabled = true;
+
+			await UniTask.Delay(1000);
+			screenFade.FadeOut(2);
+			await UniTask.Delay(3000);
+			QuitGame();
 		}
 
 		private void OnDestroy()
@@ -113,6 +137,18 @@ namespace AE
 			candleInteractiveObject.OnInteracted -= CandleInteractiveObject_OnInteracted;
 			grabInteractionHandler.OnObjectDropped -= CheckVictoryCondition;
 			Torch.OnTorchLighedUp -= CheckVictoryCondition;
+		}
+
+		private void QuitGame()
+		{
+			if (Application.isEditor)
+			{
+				UnityEditor.EditorApplication.isPlaying = false;
+			}
+			else
+			{
+				Application.Quit(0); 
+			}
 		}
 	}
 }
