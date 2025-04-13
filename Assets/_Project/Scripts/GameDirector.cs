@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Pool;
 
 namespace AE
 {
@@ -20,13 +21,19 @@ namespace AE
 		[SerializeField]
 		private GameObject[] stairsBlocks;
 
-		[Header("Main game")]
-		[SerializeField]
-		private float field1;
-
 		[Header("Finish")]
 		[SerializeField]
-		private float field2;
+		private GrabInteractionHandler grabInteractionHandler;
+		[SerializeField]
+		private CapsuleCollider dropArea;
+		[SerializeField]
+		private LayerMask interactiveObjectsLayers;
+		[SerializeField]
+		private string[] objectsTagsNeededInDropArea;
+		[SerializeField]
+		private Torch[] requiredTorches;
+
+		private readonly Collider[] detectedCollidersInDropArea = new Collider[10];
 
 		private void Start()
 		{
@@ -46,16 +53,66 @@ namespace AE
 
 		private void BeginMainGame()
 		{
+			candleInteractiveObject.OnInteracted -= CandleInteractiveObject_OnInteracted;
 			evilFloor.SetActive(true);
 			initialFloor.SetActive(false);
 			candleStandInteraction.enabled = true;
 			foreach (var block in stairsBlocks)
 				block.SetActive(false);
+
+			grabInteractionHandler.OnObjectDropped += CheckVictoryCondition;
+			Torch.OnTorchLighedUp += CheckVictoryCondition;
+		}
+
+		private void CheckVictoryCondition()
+		{
+			foreach (var torch in requiredTorches)
+				if (torch.enabled == false)
+					return;
+
+			float capsulePointsDistance = dropArea.height - 2 * dropArea.radius;
+
+			Vector3 dropAreaWorldCenter = dropArea.transform.position + dropArea.center;
+			Vector3 dropAreaPoint1 = dropAreaWorldCenter + dropArea.transform.up * (capsulePointsDistance / 2);
+			Vector3 dropAreaPoint2 = dropAreaWorldCenter - dropArea.transform.up * (capsulePointsDistance / 2);
+
+			int detectedObjectsCount = Physics.OverlapCapsuleNonAlloc(dropAreaPoint1, dropAreaPoint2, dropArea.radius, detectedCollidersInDropArea, interactiveObjectsLayers);
+
+			if (detectedObjectsCount < objectsTagsNeededInDropArea.Length)
+				return;
+
+			var tempTagsList = ListPool<string>.Get();
+			tempTagsList.Clear();
+			tempTagsList.AddRange(objectsTagsNeededInDropArea);
+
+			for (int i = 0; i < detectedObjectsCount; i++)
+			{
+				var detectedCollider = detectedCollidersInDropArea[i];
+				if (detectedCollider.TryGetComponent<InteractiveObject>(out var interactiveObject))
+				{
+					tempTagsList.Remove(interactiveObject.gameObject.tag);
+				}
+			}
+
+			int missingObjectsCount = tempTagsList.Count;
+			ListPool<string>.Release(tempTagsList);
+
+			if (missingObjectsCount > 0)
+				return;
+
+			grabInteractionHandler.OnObjectDropped -= CheckVictoryCondition;
+			Torch.OnTorchLighedUp -= CheckVictoryCondition;
+
+			// ZWYCIÊSTWO
+			Debug.Log("WYGRA£EŒ!");
+
 		}
 
 		private void OnDestroy()
 		{
 			candleInteractiveObject.OnInteracted -= CandleInteractiveObject_OnInteracted;
+			grabInteractionHandler.OnObjectDropped -= CheckVictoryCondition;
+			Torch.OnTorchLighedUp -= CheckVictoryCondition;
 		}
 	}
 }

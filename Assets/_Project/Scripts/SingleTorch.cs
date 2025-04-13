@@ -2,9 +2,10 @@ using UnityEngine;
 
 namespace AE
 {
-	public class Torch : MonoBehaviour
+	public abstract class Torch : MonoBehaviour
     {
-
+        public static event System.Action OnTorchLighedUp;
+        protected static void InvokeEvent() => OnTorchLighedUp?.Invoke();
     }
 
     public class SingleTorch : Torch
@@ -57,7 +58,11 @@ namespace AE
                     }
                 }
             }
-        }
+
+            if (enable)
+                InvokeEvent();
+
+		}
 
         private void OnDisable()
         {

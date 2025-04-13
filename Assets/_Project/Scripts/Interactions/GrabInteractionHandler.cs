@@ -6,6 +6,8 @@ namespace AE
     [RequireComponent(typeof(Interactor))]
     public class GrabInteractionHandler : InteractorInteractionHandler
     {
+        public event System.Action OnObjectDropped;
+
         [SerializeField]
         private Transform objectHolder;
         [SerializeField]
@@ -59,6 +61,7 @@ namespace AE
             grabbedObject.transform.parent = null;
             grabbedObject.isKinematic = false;
             grabbedObject = null;
+            OnObjectDropped?.Invoke();
         }
     }
 }

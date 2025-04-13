@@ -19,6 +19,8 @@ namespace AE
 		{
 			foreach (var torch in subtorches)
 				torch.enabled = true;
+
+			InvokeEvent();
 		}
 
         private void OnDisable()
