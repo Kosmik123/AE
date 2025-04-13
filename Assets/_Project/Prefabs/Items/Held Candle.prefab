@@ -166,6 +166,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Held Candle
       objectReference: {fileID: 0}
+    - target: {fileID: 4017313296344478562, guid: 1e80be820fa00ac4da7f711099cb29a9, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4233036246718092496, guid: 1e80be820fa00ac4da7f711099cb29a9, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
     - target: {fileID: 4781126988133541369, guid: 1e80be820fa00ac4da7f711099cb29a9, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -232,13 +240,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: SD_Prop_Candle_Flame_01
       objectReference: {fileID: 0}
+    - target: {fileID: 154162, guid: cb19cf532cb13814ca5674b3a3784182, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
     - target: {fileID: 425430, guid: cb19cf532cb13814ca5674b3a3784182, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 425430, guid: cb19cf532cb13814ca5674b3a3784182, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 0.05
       objectReference: {fileID: 0}
     - target: {fileID: 425430, guid: cb19cf532cb13814ca5674b3a3784182, type: 3}
       propertyPath: m_LocalPosition.z

@@ -3,7 +3,7 @@ using UnityEngine.Splines;
 
 namespace AE
 {
-    public class RollingBarrel : MonoBehaviour
+	public class RollingBarrel : MonoBehaviour
     {
         [SerializeField]
         private float rollSpeed;
@@ -13,17 +13,21 @@ namespace AE
         private SplineAnimate splineMovement;
         [SerializeField]
         private float radius;
+        [SerializeField]
+        private Rigidbody _rigidbody;
 
         private void Reset()
         {
             rotator = GetComponentInChildren<Rotator>();
             splineMovement = GetComponent<SplineAnimate>();
+            _rigidbody = GetComponent<Rigidbody>();
         }
 
         private void Awake()
         {
             rotator.enabled = false;
             splineMovement.enabled = false;
+            _rigidbody.isKinematic = true;
         }
 
         [ContextMenu("Roll")]
@@ -36,6 +40,15 @@ namespace AE
             splineMovement.MaxSpeed = rollSpeed;
             splineMovement.enabled = true;
             rotator.enabled = true;
+
+			splineMovement.Completed += SplineMovement_Completed;
         }
-    }
+
+		private void SplineMovement_Completed()
+		{
+			splineMovement.Completed -= SplineMovement_Completed;
+            rotator.enabled = false;
+            _rigidbody.isKinematic = false;
+        }
+	}
 }
