@@ -38,19 +38,20 @@ namespace AE
                 return false;
 
             interactor.enabled = false;
-            playerMovement.enabled = false;
+            interactor.DisableMovement();
             var candle = lightSource.Candle;
 
             TweenCallback lightingAction = lightSource.IsLighted ? LightUpTorch : LightUpSource;
 
-            var sequence = DOTween.Sequence()
+            DOTween.Sequence()
                 .Append(candle.DOMove(candleLightingPoint.position, moveToTorchDuration))
                     .Join(candle.DORotateQuaternion(candleLightingPoint.rotation, moveToTorchDuration))
                 .AppendInterval(middleWaitingDuration)
                 .AppendCallback(lightingAction)
                 .Append(candle.DOLocalMove(Vector3.zero, moveBackDuration))
                     .Join(candle.DOLocalRotateQuaternion(Quaternion.identity, moveBackDuration))
-                .AppendCallback(EnablePlayer);
+                .AppendCallback(EnableInteractor)
+                .Play();
 
             return true;
 
@@ -64,12 +65,11 @@ namespace AE
                 lightSource.IsLighted = true;
             }
 
-            void EnablePlayer()
+            void EnableInteractor()
             {
                 interactor.enabled = true;
-                playerMovement.enabled = true;
+                interactor.EnableMovement();
             }
-
         }
 
     }

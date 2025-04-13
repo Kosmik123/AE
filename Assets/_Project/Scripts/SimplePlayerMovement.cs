@@ -17,12 +17,12 @@ namespace AE
 
         private void Awake()
         {
+            moveInput = moveInputAction.action;
             characterController = GetComponent<CharacterController>();
         }
 
         private void OnEnable()
         {
-            moveInput = moveInputAction.action.Clone(); 
             moveInput.Enable();
             characterController.enabled = true;
         }
@@ -45,8 +45,6 @@ namespace AE
         {
             characterController.enabled = false;
             moveInput.Disable();
-            moveInput.Dispose();
-            moveInput = null;
         }
     }
 }

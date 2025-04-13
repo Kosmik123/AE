@@ -185,12 +185,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1251407419469504575}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.3, y: 1.5, z: 0.6}
+  m_LocalRotation: {x: 0.2588191, y: 0, z: 0, w: 0.9659258}
+  m_LocalPosition: {x: -0.6, y: -0.9, z: 0.60000014}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 659757348154205339}
+  m_Father: {fileID: 8429667932012058869}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1845507733727403634
 GameObject:
@@ -223,7 +223,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 3874618489701600275}
   - {fileID: 7018732184765018386}
   m_Father: {fileID: 6873244619290580430}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -245,6 +244,9 @@ MonoBehaviour:
     m_Bits: 1281
   interactionRange: 2
   interactInput: {fileID: 1120369429361536294, guid: bf5fbaa4bc5342c429fcfd3552b3a941, type: 3}
+  movementComponents:
+  - {fileID: 4237495844582817526}
+  - {fileID: 2202087164605513198}
   currentInteractiveObject: {fileID: 0}
 --- !u!114 &7400123494011994568
 MonoBehaviour:
@@ -261,7 +263,6 @@ MonoBehaviour:
   leftHandObjectHolder: {fileID: 3874618489701600275}
   rightHandObjectHolder: {fileID: 7018732184765018386}
   lightSourceTag: Items/Candle
-  hasLightSource: 0
   leftHandObject: {fileID: 0}
   rightHandObject: {fileID: 0}
 --- !u!1 &2179588913920522169
@@ -294,7 +295,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 2, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 3874618489701600275}
   m_Father: {fileID: 6873244619290580430}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &3084373705482348921

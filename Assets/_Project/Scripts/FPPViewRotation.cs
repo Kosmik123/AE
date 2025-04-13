@@ -64,9 +64,13 @@ namespace AE
             }
         }
 
-        private void OnEnable()
+		private void Awake()
+		{
+            lookInput = lookInputAction.action;
+		}
+
+		private void OnEnable()
         {
-            lookInput = lookInputAction.action.Clone();
             lookInput.Enable();
         }
 
@@ -90,8 +94,6 @@ namespace AE
         private void OnDisable()
         {
             lookInput.Disable();
-            lookInput.Dispose();
-            lookInput = null;
         }
     }
 }

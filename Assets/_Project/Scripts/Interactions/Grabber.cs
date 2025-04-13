@@ -34,7 +34,9 @@ namespace AE
             grabbedObject.transform.SetLocalPositionAndRotation(Vector3.zero, Quaternion.identity);
 
             if (grabbedObject.CompareTag(lightSourceTag) && TryGetComponent<LightSource>(out _) == false)
-                gameObject.AddComponent<LightSource>();
+            {
+                gameObject.AddComponent<LightSource>().Candle = grabbedObject.transform;
+            }
         }
 
         public bool TryGetGrabbedObject(GrabHand hand, out Rigidbody grabbedObject)
