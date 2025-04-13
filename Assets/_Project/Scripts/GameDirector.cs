@@ -113,7 +113,7 @@ namespace AE
 			grabInteractionHandler.OnObjectDropped -= CheckVictoryCondition;
 			Torch.OnTorchLighedUp -= CheckVictoryCondition;
 
-			PlayWinningSequence(); 
+			PlayWinningSequence();
 		}
 
 		[ContextMenu("Play Winning Sequence")]
@@ -141,14 +141,18 @@ namespace AE
 
 		private void QuitGame()
 		{
+#if UNITY_EDITOR
 			if (Application.isEditor)
 			{
 				UnityEditor.EditorApplication.isPlaying = false;
 			}
 			else
 			{
-				Application.Quit(0); 
+				Application.Quit(0);
 			}
+#else
+			Application.Quit(0); 
+#endif
 		}
 	}
 }
